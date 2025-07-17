@@ -1,0 +1,9 @@
+features:
+  common: Fips
+  data: industries
+  path: https://raw.githubusercontent.com/ModelEarth/community-timelines/main/training/naics2/US/counties/2020/US-ME-training-naics2-counties-2020.csv
+folder: naics6-forestcanopy-counties-simple
+models: rbf
+targets:
+  data: forest_canopy
+  path: https://raw.githubusercontent.com/ModelEarth/tree-canopy/refs/heads/main/input/targets/forest_canopy_data_target.csv
