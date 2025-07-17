@@ -1,22 +1,23 @@
 # tree-canopy
 
 We forecast forest canopy change using a binary classification target:
-1. **High Canopy Growth** – The classification compares forest canopy change between 2015 and 2019 (a 4-year period), and counties with a ≥5% increase are labeled as high growth (1), others as 0.
-2. **Stable/Declining** – All other counties.
+
+**High Canopy Growth** – The classification compares forest canopy change between 2015 and 2019 (a 4-year period), and counties with a ≥5% increase are labeled as high growth (1), others as 0.
+**Stable/Declining** – All other counties.
 
 ## Forest Canopy Change as Target
 
-[**Our Forest Canopy Colab**](https://colab.research.google.com/drive/10i3CP3Tgoxxj7PTxvr6YGw9AaxoI4Kxu?usp=sharing) prepares forest canopy data for use in our [RealityStream ML](../realitystream/) pipeline. The dataset is retrieved using the [**DataCommons API**](https://datacommons.org/) and paired with county-level geographic information based on FIPS codes.
+[**Our Forest Canopy Colab**](https://colab.research.google.com/drive/10i3CP3Tgoxxj7PTxvr6YGw9AaxoI4Kxu?usp=sharing) prepares forest canopy data for use in our [Run Models Colab](https://colab.research.google.com/drive/1zu0WcCiIJ5X3iN1Hd1KSW4dGn0JuodB8?usp=sharing). The dataset is retrieved using the [**DataCommons API**](https://datacommons.org/) and paired with county-level geographic information based on FIPS codes.
 
 The Colab notebook generates a `.csv` file that classifies each U.S. county into two groups based on their **relative forest cover growth over the past 4 years**.
 
-View .csv output: [tree-canopy/targets](https://github.com/ModelEarth/tree-canopy/tree/main/input/targets)
+View .csv output: [tree-canopy/targets](https://github.com/ModelEarth/tree-canopy/blob/main/input/targets/forest_canopy_data_target.csv)
 
-This dataset is based on **Copernicus-derived forest land cover** as a percentage, accessed through DataCommons for each U.S. county from the most recent available years (e.g., 2015-2019).
+This dataset is based on **Copernicus-derived forest land cover** as a percentage, accessed through DataCommons for each U.S. county from the most recent available years (2015-2019).
 
 ---
 
-## 📈 Processing Steps
+## Processing Steps
 
 **1. County Metadata Collection**:
    - Retrieved all counties in the U.S. using `get_places_in(["country/USA"], "County")`.
@@ -52,15 +53,16 @@ This dataset is based on **Copernicus-derived forest land cover** as a percentag
 
 ---
 
-## 💡 How It Works
+## How It Works
 
 The `.csv` file is used as a **target input** for ML models predicting forest canopy trends based on other features (e.g., economic activity).
 
 You can plug this into any modeling workflow by referencing the parameter YAML described below.
 
 ---
+## Target YAML Configuration
 
-## 📦 Target YAML Configuration
+[`forest_canopy_config.yaml`](https://github.com/ModelEarth/tree-canopy/blob/main/parameters/forest_canopy_config.yaml) – YAML configuration for using this dataset as a model target.
 
 ```yaml
 folder: naics6-forestcanopy-counties-simple
@@ -72,34 +74,3 @@ targets:
   data: forest_canopy
   path: https://raw.githubusercontent.com/ModelEarth/tree-canopy/main/input/targets/forest_canopy_data_target.csv
 models: rbf
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
