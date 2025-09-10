@@ -60,6 +60,46 @@ The `.csv` file is used as a **target input** for ML models predicting forest ca
 You can plug this into any modeling workflow by referencing the parameter YAML described below.
 
 ---
+
+
+
+
+---
+
+## 🔎 Workflow Overview (with the CSV)
+
+1. **Target Formation**
+   - Extract U.S. county metadata via FIPS codes.
+   - Retrieve Copernicus-derived forest cover data.
+   - Calculate relative growth:
+     ```python
+     relative_growth = ((recent - start) / start) * 100
+     ```
+   - Label counties as High Growth (1) or Stable/Declining (0).
+
+2. **Mathematical Analysis**
+   - Rank counties by canopy change.
+   - Identify **top 10 counties per state** with largest decreases.
+
+3. **Preprocessing for EDA**
+   - Clean FIPS codes, merge metadata.
+   - Drop unrelated features, handle missing values.
+   - Reshape data into **long format** for time-series models.
+
+4. **Predictive Modeling**
+   - **Linear Regression** (`sklearn`) for trend fitting.  
+   - **ARIMA** (`statsmodels`) for 5-year canopy forecasts.  
+   - Rolling-window validation used for robustness.
+
+5. **Statewise Pipelines**
+   - Group counties by state for **localized forecasting**.
+   - Outputs structured for visualization.
+
+6. **Interactive Dashboard (TODO)**
+   - Planned UI with dropdown menus for **state + county selection**.
+   - Direct access to forecasts from pipelines.
+
+---
 ## Target YAML Configuration
 
 [`forest_canopy_config.yaml`](https://github.com/ModelEarth/tree-canopy/blob/main/parameters/forest_canopy_config.yaml) – YAML configuration for using this dataset as a model target.
