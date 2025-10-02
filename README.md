@@ -95,9 +95,14 @@ You can plug this into any modeling workflow by referencing the parameter YAML d
    - Group counties by state for **localized forecasting**.
    - Outputs structured for visualization.
 
-6. **Interactive Dashboard (TODO)**
-   - Planned UI with dropdown menus for **state + county selection**.
-   - Direct access to forecasts from pipelines.
+6. **Interactive Dashboard **
+   - Outputs structured for visualization.
+   - Added Gradio dashboard with dropdown menus for state + county selection.
+   - Interactive plots show forest canopy trends.
+   - Integrated maps display canopy growth/decline at the county level.
+   - Automatically highlights top 10 declining counties per state.
+
+   
 
 ---
 ## Target YAML Configuration
@@ -114,3 +119,4 @@ targets:
   data: forest_canopy
   path: https://raw.githubusercontent.com/ModelEarth/tree-canopy/main/input/targets/forest_canopy_data_target.csv
 models: rbf
+
