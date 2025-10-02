@@ -103,7 +103,7 @@ You can plug this into any modeling workflow by referencing the parameter YAML d
    - Automatically highlights top 10 declining counties per state.
 
    
-
+![Dashboard Demo](images/forest_canopy_gif.gif)
 ---
 ## Target YAML Configuration
 
